@@ -2,7 +2,6 @@ package com.zama.logsInventori.handlers.bus;
 
 import com.google.gson.Gson;
 import com.zama.logsInventori.Models.DTO.MessageDTO;
-import com.zama.logsInventori.Models.Product;
 import com.zama.logsInventori.RabbitConfig;
 import com.zama.logsInventori.drivenAdapters.repository.Message_Repository;
 import com.zama.logsInventori.utils.Mappers.MessageMapper;
@@ -25,15 +24,17 @@ public class SalesConsumer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        /*receiver.consumeAutoAck(RabbitConfig.QUEUE_SALES)
+        receiver.consumeAutoAck(RabbitConfig.QUEUE_SALES)
                 .map(messageConsumer -> {
+
                     MessageDTO message = gson.fromJson(
                             new String(messageConsumer.getBody()), MessageDTO.class);
 
-                    return message;
+                    messageRepository.save(MessageMapper.toMessageWhitProduct(message)).subscribe();
 
-                }).map(messageDTO -> {
-                }).subscribe();*/
+                    return messageConsumer;
+
+                }).subscribe();
 
     }
 }

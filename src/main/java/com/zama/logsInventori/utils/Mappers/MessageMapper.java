@@ -37,6 +37,16 @@ public class MessageMapper {
         return msg;
     }
 
+    public static Message toSale(MessageDTO message){
+        Message msg = new Message();
+        msg.setPublishDate(LocalDateTime.parse(message.getPublishDate()));
+        msg.setAction(message.getAction());
+        msg.setTypeMessage(message.getTypeMessage());
+        msg.setMessage(message.getMessage());
+        msg.setProduct(message.getProduct());
+        return msg;
+    }
+
     public static MessageDTO toDTO(Message message){
         MessageDTO msg = new MessageDTO();
         msg.setPublishDate(message.getPublishDate().toString());

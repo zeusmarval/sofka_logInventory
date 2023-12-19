@@ -68,21 +68,6 @@ public class Message {
     public Message() {
     }
 
-    public Message(String action, String typeMessage, String message) {
-        this.action = action;
-        this.typeMessage = typeMessage;
-        this.message = message;
-    }
-
-    public Message(String id, LocalDateTime publishDate, String action, String typeMessage, String message, List<Product> product) {
-        this.id = id;
-        this.publishDate = publishDate;
-        this.action = action;
-        this.typeMessage = typeMessage;
-        this.message = message;
-        this.product = product;
-    }
-
     @Override
     public String toString() {
         return "PublishMessage{" +

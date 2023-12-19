@@ -11,60 +11,13 @@ public class Product {
     @Id
     private String id;
     private String name;
-    private int quantity;
+    private Integer quantity;
     private BigDecimal basePrice;
-    private int wholesaleUnits;
+    private Integer wholesaleUnits;
+    private BigDecimal subtotal;
 
     public Product() {
     }
-
-    public Product(String name, int quantity, BigDecimal basePrice, int wholesaleUnit) {
-        this.name = name;
-        this.quantity = quantity;
-        this.basePrice = basePrice;
-        this.wholesaleUnits = wholesaleUnit;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public BigDecimal getBasePrice() {
-        return basePrice;
-    }
-
-    public void setBasePrice(BigDecimal basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    public int getWholesaleUnits() {
-        return wholesaleUnits;
-    }
-
-    public void setWholesaleUnits(int wholesaleUnits) {
-        this.wholesaleUnits = wholesaleUnits;
-    }
-
 
     @Override
     public String toString() {

@@ -2,7 +2,6 @@ package com.zama.logsInventori.handlers.bus;
 
 import com.google.gson.Gson;
 import com.zama.logsInventori.Models.DTO.MessageDTO;
-import com.zama.logsInventori.Models.Product;
 import com.zama.logsInventori.RabbitConfig;
 import com.zama.logsInventori.drivenAdapters.repository.Message_Repository;
 import com.zama.logsInventori.utils.Mappers.MessageMapper;
@@ -13,8 +12,8 @@ import org.springframework.stereotype.Component;
 import reactor.rabbitmq.Receiver;
 
 @Component
-@Order(1)
-public class SalesConsumer implements CommandLineRunner {
+@Order(3)
+public class ProductConsumer implements CommandLineRunner {
     @Autowired
     private Receiver receiver;
     @Autowired
@@ -25,15 +24,19 @@ public class SalesConsumer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        /*receiver.consumeAutoAck(RabbitConfig.QUEUE_SALES)
+        receiver.consumeAutoAck(RabbitConfig.QUEUE_PRODUCT)
                 .map(messageConsumer -> {
+
+                    System.out.println(new String(messageConsumer.getBody()));
+
                     MessageDTO message = gson.fromJson(
                             new String(messageConsumer.getBody()), MessageDTO.class);
 
-                    return message;
+                    messageRepository.save(MessageMapper.toMessageWhitProduct(message)).subscribe();
 
-                }).map(messageDTO -> {
-                }).subscribe();*/
+                    return messageConsumer;
+
+                }).subscribe();
 
     }
 }

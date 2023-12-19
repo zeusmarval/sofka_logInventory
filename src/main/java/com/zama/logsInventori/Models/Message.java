@@ -1,12 +1,29 @@
 package com.zama.logsInventori.Models;
 
-import java.time.LocalDateTime;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class MessagePublish {
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Document(collection = "messages")
+public class Message {
+
+    @Id
+    private String id;
     private LocalDateTime publishDate;
     private String action;
     private String typeMessage;
     private String message;
+    private List<Product> product;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getAction() {
         return action;
@@ -40,13 +57,30 @@ public class MessagePublish {
         this.publishDate = publishDate;
     }
 
-    public MessagePublish() {
+    public List<Product> getProduct() {
+        return product;
     }
 
-    public MessagePublish(String action, String typeMessage, String message) {
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
+
+    public Message() {
+    }
+
+    public Message(String action, String typeMessage, String message) {
         this.action = action;
         this.typeMessage = typeMessage;
         this.message = message;
+    }
+
+    public Message(String id, LocalDateTime publishDate, String action, String typeMessage, String message, List<Product> product) {
+        this.id = id;
+        this.publishDate = publishDate;
+        this.action = action;
+        this.typeMessage = typeMessage;
+        this.message = message;
+        this.product = product;
     }
 
     @Override

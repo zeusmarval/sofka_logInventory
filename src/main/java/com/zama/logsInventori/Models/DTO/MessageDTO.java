@@ -1,10 +1,15 @@
 package com.zama.logsInventori.Models.DTO;
 
-public class MessagePublishDTO {
+import com.zama.logsInventori.Models.Product;
+
+import java.util.List;
+
+public class MessageDTO {
     private String publishDate;
     private String action;
     private String typeMessage;
     private String message;
+    private List<Product> product;
 
     public String getAction() {
         return action;
@@ -36,6 +41,14 @@ public class MessagePublishDTO {
 
     public void setPublishDate(String publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
     }
 
     @Override

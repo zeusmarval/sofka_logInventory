@@ -26,9 +26,6 @@ public class ProductConsumer implements CommandLineRunner {
 
         receiver.consumeAutoAck(RabbitConfig.QUEUE_PRODUCT)
                 .map(messageConsumer -> {
-
-                    System.out.println(new String(messageConsumer.getBody()));
-
                     MessageDTO message = gson.fromJson(
                             new String(messageConsumer.getBody()), MessageDTO.class);
 

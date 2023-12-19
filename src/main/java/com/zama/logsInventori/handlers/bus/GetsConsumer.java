@@ -11,8 +11,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import reactor.rabbitmq.Receiver;
 
-//@Component
-//@Order(2)
+@Component
+@Order(2)
 public class GetsConsumer implements CommandLineRunner {
     @Autowired
     private Receiver receiver;
@@ -24,9 +24,8 @@ public class GetsConsumer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        receiver.consumeAutoAck(RabbitConfig.QUEUE_PRODUCT)
+        receiver.consumeAutoAck(RabbitConfig.QUEUE_GETS)
                 .map(messageConsumer -> {
-
                     MessageDTO message = gson.fromJson(
                             new String(messageConsumer.getBody()), MessageDTO.class);
 

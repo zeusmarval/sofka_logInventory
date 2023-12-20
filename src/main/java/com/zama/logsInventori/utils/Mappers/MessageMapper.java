@@ -15,6 +15,11 @@ public class MessageMapper {
         msg.setAction(entity.getAction());
         msg.setTypeMessage(entity.getTypeMessage());
         msg.setMessage(entity.getMessage());
+        if (entity.getProduct() != null) {
+            msg.setProduct(entity.getProduct().stream().map(ProductMapper::toEntity).toList());
+        } else {
+            msg.setProduct(entity.getProduct());
+        }
         return msg;
     }
 

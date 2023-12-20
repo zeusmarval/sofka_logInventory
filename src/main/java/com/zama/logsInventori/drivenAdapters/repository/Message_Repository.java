@@ -17,4 +17,7 @@ public interface Message_Repository extends ReactiveMongoRepository<Message, Str
     @Aggregation("{ $match: { 'product.name': ?0 } }")
     Flux<Message> findSalesDetailByProductName(String productName);
 
+    @Aggregation("{ $match: { 'action': ?0, 'typeMessage': 'Sale' } }")
+    Flux<Message> findSalesDetailByType(String typeSale);
+
 }

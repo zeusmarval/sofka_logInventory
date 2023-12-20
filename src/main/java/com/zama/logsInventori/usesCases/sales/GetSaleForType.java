@@ -1,4 +1,4 @@
-package com.zama.logsInventori.usesCases.product;
+package com.zama.logsInventori.usesCases.sales;
 
 import com.zama.logsInventori.Models.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +12,15 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-public class GetMovementsProduct {
+public class GetSaleForType {
 
     @Autowired
-    private ProductResource productResource;
+    private SalesResource salesResource;
 
     public Mono<ServerResponse> apply(ServerRequest request) {
-        String name = request.pathVariable("name");
+        String typeSale = request.pathVariable("typeSale");
 
-        Flux<Message> movementsProduct = productResource.getMovementsProduct(name);
+        Flux<Message> movementsProduct = salesResource.getSalesForType(typeSale);
 
         return ServerResponse.ok()
                 .body(movementsProduct, Message.class)
@@ -29,7 +29,7 @@ public class GetMovementsProduct {
     }
 
     private Mono<ServerResponse> handleError(Throwable error) {
-        String messageError = "Error al obtener los movimientos del producto: " + error;
+        String messageError = "Error al obtener los productos: " + error;
         return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(messageError));

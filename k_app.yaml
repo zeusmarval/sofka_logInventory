@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: logsinventory-service
+spec:
+  selector:
+    app: logsinventory
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8086
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logsinventory-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logsinventory
+  template:
+    metadata:
+      labels:
+        app: logsinventory
+    spec:
+      containers:
+        - name: logsinventory
+          image: zeusmarval/logsinventory:latest
+          ports:
+            - containerPort: 8086
+          env:
+            - name: RABBIT_URI
+              value: "amqp://guest:guest@{IPAddress minikube}"
+            - name: MONGODB_URI
+              value: "mongodb://{IPAddress minikube}/inventory"
+            - name: SERVER_PORT
+              value: "8086"

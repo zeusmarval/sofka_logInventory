@@ -20,13 +20,6 @@ public class RabbitConfig {
     public static final String QUEUE_PRODCUCT_ERRORS = "product-errors-queue";
     public static final String QUEUE_SALES_ERRORS = "sales-errors-queue";
     public static final String QUEUE_GETS_ERRORS = "gets-errors-queue";
-    public static final String EXCHANGE_NAME = "inventory-exchange";
-    public static final String ROUTING_KEY_PRODUCT = "product.routing.key";
-    public static final String ROUTING_KEY_SALES = "sales.routing.key";
-    public static final String ROUTING_KEY_GETS = "gets.routing.key";
-    public static final String ROUTING_KEY_PRODUCT_ERROR = "errors.product.routing.key";
-    public static final String ROUTING_KEY_SALES_ERROR = "errors.sales.routing.key";
-    public static final String ROUTING_KEY_GETS_ERROR = "errors.gets.routing.key";
     @Value("${URI_NAME}")
     private String URI_NAME;
     @Bean

@@ -35,5 +35,16 @@ public class ProductConsumer implements CommandLineRunner {
 
                 }).subscribe();
 
+        receiver.consumeAutoAck(RabbitConfig.QUEUE_PRODCUCT_ERRORS)
+                .map(messageConsumer -> {
+                    MessageDTO message = gson.fromJson(
+                            new String(messageConsumer.getBody()), MessageDTO.class);
+
+                    messageRepository.save(MessageMapper.toMessage(message)).subscribe();
+
+                    return messageConsumer;
+
+                }).subscribe();
+
     }
 }
